@@ -3,14 +3,13 @@ package fr.scalculator
 import org.specs2.mutable
 
 
-class ScalculatorTest extends mutable.SpecificationWithJUnit with Scalculator{
+class ScalculatorTest extends mutable.SpecificationWithJUnit with Scalculator {
 
   "The calculator with no input " should {
-      "return no result" in {
-        calculate(null) must beNone
-        calculate("") must beNone
-      }
+    "return no result" in {
+      calculate("") must beNone
     }
+  }
 
   "The calculator with : 1 " should {
     "return 1" in {
@@ -24,5 +23,15 @@ class ScalculatorTest extends mutable.SpecificationWithJUnit with Scalculator{
     }
   }
 
+  "The calculator with : 3+4 " should {
+    "return 7" in {
+      calculate("3+4") must beSome(7)
+    }
+  }
 
+  "The calculator with : 9-7 " should {
+    "return 2" in {
+      calculate("9-7") must beSome(2)
+    }
+  }
 }

@@ -31,4 +31,5 @@ scalacOptions ++= Seq("-Yrangepos", "-deprecation", "-unchecked", "-feature", "-
 
 logBuffered := false
 
+mainClass in Compile := Some("fr.scalculator.Main")
 

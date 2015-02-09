@@ -15,6 +15,7 @@ Commands
 
 All the commands are :
 
+ * Run <expression>: `sbt "run \"<expression>\""`. For example : `sbt "run \"4+6\""`
  * Test : `sbt test`
 
 
