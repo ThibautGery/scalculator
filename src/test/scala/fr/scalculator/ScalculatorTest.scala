@@ -29,6 +29,12 @@ class ScalculatorTest extends mutable.SpecificationWithJUnit with Scalculator {
     }
   }
 
+  "The calculator" should {
+    "ignore space" in {
+      calculate("3 + 4") must beSome(7)
+    }
+  }
+
   "The calculator with : 9-7 " should {
     "return 2" in {
       calculate("9-7") must beSome(2)
