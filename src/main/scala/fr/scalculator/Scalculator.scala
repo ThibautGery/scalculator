@@ -1,19 +1,32 @@
 package fr.scalculator
 
 trait Scalculator {
+
+  def add(right: Float, left: Float): Float = {
+    right + left
+  }
+
+  def substract(right: Float, left: Float): Float = {
+    right - left
+  }
+
+  def multiply(right: Float, left: Float): Float = {
+    right * left
+  }
+
+  def division(right: Float, left: Float): Float = {
+    right / left
+  }
+
   def calculate(expression: String): Option[Float] = {
     if (expression.contains('+')) {
-      val result = splitExpression(expression, '+')
-      Some(result._1 + result._2)
+      interpretExpression(expression, '+', add)
     } else if (expression.contains('-')) {
-      val result = splitExpression(expression, '-')
-      Some(result._1 - result._2)
+      interpretExpression(expression, '-', substract)
     } else if (expression.contains('*')) {
-      val result = splitExpression(expression, '*')
-      Some(result._1 * result._2)
+      interpretExpression(expression, '*', multiply)
     } else if (expression.contains('/')) {
-      val result = splitExpression(expression, '/')
-      Some(result._1 / result._2)
+      interpretExpression(expression, '/', division)
     }
     else {
       toFloat(expression)
@@ -21,12 +34,13 @@ trait Scalculator {
 
   }
 
-
-  private def splitExpression(expression: String, sign: Char) = {
+  private def interpretExpression(expression: String, sign: Char, operation: (Float, Float) => Float): Option[Float] = {
     val signIndex = expression.indexOf(sign)
     val firstExpression = expression.substring(0, signIndex)
     val secondExpression = expression.substring(signIndex + 1, expression.size)
-    (calculate(firstExpression).get, calculate(secondExpression).get)
+
+    for (f0 <- calculate(firstExpression);
+         s0 <- calculate(secondExpression)) yield operation(f0, s0)
   }
 
   private def toFloat(s: String): Option[Float] = {
