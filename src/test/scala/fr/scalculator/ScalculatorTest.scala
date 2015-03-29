@@ -60,5 +60,29 @@ class ScalculatorTest extends mutable.SpecificationWithJUnit with Scalculator {
     }
   }
 
+  "The calculator with : 2 * 4 " should {
+    "return 8" in {
+      calculate("2 * 4") must beSome(8)
+    }
+  }
+
+  "The calculator with : 2 + 3 - 1" should {
+    "return 4" in {
+      calculate("2 + 3 - 1") must beSome(4)
+    }
+  }
+
+  "The calculator with : 2 + 3 * 2" should {
+    "return 8" in {
+      calculate("2 + 3 * 2") must beSome(8)
+    }
+  }
+
+  "The calculator with : 2 + 3 * 2 + 4" should {
+    "return 8" in {
+      calculate("2 + 3 * 2 + 4") must beSome(12)
+    }
+  }
+
 
 }
